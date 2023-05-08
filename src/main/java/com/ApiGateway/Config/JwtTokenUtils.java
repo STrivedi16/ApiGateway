@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -18,10 +21,11 @@ import io.jsonwebtoken.SignatureAlgorithm;
 public class JwtTokenUtils implements Serializable{
 
 	private static final long serialVersionId=-1l;
-	private static final long JWT_TOKEN_VALIDITY=5*60*60;
+	private static final long JWT_TOKEN_VALIDITY=50*60*60;
 	
 	private static final String TYPE="Access";
 	
+	@Value("${jwt.secret}")
 	private String secret;
 	
 	public String  getUsernameFromToken(String token)
